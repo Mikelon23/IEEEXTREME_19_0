@@ -1,5 +1,6 @@
 #ignorar los ejercicios de nivel medio y dificil
-/level_Easy
-#/Cod_Emerg_Estacion_Esp.py
+/level_Easy/Cod_Emerg_Estacion_Esp.py
+/level_Easy/Cod_Emerg_Estacion_Esp.cpp
+/level_Easy/Pares_Suma_Objetivo.cpp
 /level_Hard
 /level_Medium
