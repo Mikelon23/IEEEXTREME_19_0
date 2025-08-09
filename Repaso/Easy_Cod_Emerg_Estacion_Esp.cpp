@@ -12,5 +12,5 @@ int main() {
     return 0;
 }
 /*Verificación:
-Entrada: 1*0*1* → Salida: 100001
+Entrada: 1*0*1* → Salida: 100010
 (Cualquier entrada con '*' se reemplaza por '0')*/
