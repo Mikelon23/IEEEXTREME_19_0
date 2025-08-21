@@ -1,3 +1,24 @@
+/* Ejercicio de Nivel Difícil: Sincronización de Red Cuántica
+Descripción del Problema
+Una red cuántica consta de n nodos, cada uno con un estado binario (0 o 1). Cada segundo, los nodos actualizan su estado simultáneamente según la siguiente regla:
+
+Si un nodo tiene al menos 2 vecinos con estado 1, cambia su estado (0 se convierte en 1, o 1 se convierte en 0).
+
+Los nodos marcados como magnetizados no cambian su estado nunca.
+
+El objetivo es determinar cuántos segundos tardará la red en alcanzar un estado estable (donde ningún nodo cambia). Si la red entra en un ciclo infinito, se debe retornar -1.
+
+Entrada
+La primera línea contiene n (número de nodos) y m (número de aristas).
+
+Las siguientes m líneas contienen dos enteros u y v que representan una arista no dirigida entre los nodos u y v.
+
+La siguiente línea es una cadena de longitud n que representa el estado inicial de los nodos (cadena binaria).
+
+La última línea comienza con un entero k (número de nodos magnetizados), seguido de k enteros que son los índices de los nodos magnetizados.
+
+Salida
+Un entero que representa el número de segundos hasta alcanzar un estado estable, o -1 si se detecta un ciclo infinito. */
 #include <iostream>
 #include <vector>
 #include <map>
