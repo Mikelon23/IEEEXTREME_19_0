@@ -71,3 +71,10 @@ Entrada: 3 3 + 0 1 + 1 2 + 2 0 + 010 + 1 1 → Salida: 0
 (Estable inmediatamente)
 Entrada cíclica: 2 1 + 0 1 + 01 + 0 → Salida: -1
 (Oscila entre [0,1] y [1,0]) */
+
+/*#Entrada:
+#3 2
+#1 1
+#2 2
+#3 3
+#Salida: 5.66*/
