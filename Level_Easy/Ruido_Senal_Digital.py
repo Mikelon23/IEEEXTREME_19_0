@@ -25,8 +25,7 @@ else:
     print(f"{average} {above_average}")
 
 #Entrada:
-#8
-#-5 10 3 -2 8 15 -1 6
+#8 -5 10 3 -2 8 15 -1 6
 #Salida:
 # 8 2
 
