@@ -8,53 +8,55 @@
 #Distancia euclidiana mínima redondeada a 2 decimales.
 
 #Solución (Programación Dinámica + Permutaciones):
-import math
-from itertools import combinations
-
-def distancia(p1, p2):
-    return math.sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2)
-
 def main():
-    n, k = map(int, input().split())
-    puntos = [tuple(map(int, input().split())) for _ in range(n)]
-    origen = (0, 0)
+    import sys
+    data = sys.stdin.read().splitlines()
+    n, m = map(int, data[0].split())
+    graph = [[] for _ in range(n)]
+    for i in range(1, 1 + m):
+        u, v = map(int, data[i].split())
+        graph[u].append(v)
+        graph[v].append(u)
     
-    # Precalcular distancias desde/hacia origen
-    dist_origen = [distancia(origen, p) for p in puntos]
+    estado_str = data[1 + m].strip()
+    estado = [int(c) for c in estado_str]
     
-    # Matriz de distancias entre puntos
-    dist_entre = [[distancia(puntos[i], puntos[j]) for j in range(n)] for i in range(n)]
+    k_line = data[2 + m].split()
+    k = int(k_line[0])
+    magnetizados = set()
+    if k > 0:
+        magnetizados = set(map(int, k_line[1:1 + k]))
     
-    # DP: dp[mask][i] = mínima distancia al visitar conjunto 'mask' terminando en 'i'
-    dp = [[float('inf')] * n for _ in range(1<<n)]
-    for i in range(n):
-        dp[1<<i][i] = dist_origen[i] * 2  # Ida y vuelta si solo un punto
+    visited = {}
+    steps = 0
+    current = tuple(estado)
     
-    # Iterar sobre máscaras y puntos
-    for mask in range(1<<n):
-        for i in range(n):
-            if not (mask & (1<<i)): continue
-            for j in range(n):
-                if mask & (1<<j): continue
-                new_mask = mask | (1<<j)
-                nuevo_valor = dp[mask][i] - dist_origen[i] + dist_entre[i][j] + dist_origen[j]
-                if nuevo_valor < dp[new_mask][j]:
-                    dp[new_mask][j] = nuevo_valor
+    while current not in visited:
+        visited[current] = steps
+        next_estado = list(current)
+        changed = False
+        
+        for nodo in range(n):
+            if nodo in magnetizados:
+                continue
+                
+            count_1 = 0
+            for vecino in graph[nodo]:
+                if current[vecino] == 1:
+                    count_1 += 1
+            
+            if count_1 >= 2:
+                next_estado[nodo] = 1 - current[nodo]
+                changed = True
+        
+        if not changed:
+            print(steps)
+            return
+            
+        current = tuple(next_estado)
+        steps += 1
     
-    # Encontrar mínimo para todas las máscaras con exactamente k bits activos
-    min_dist = float('inf')
-    for mask in range(1<<n):
-        if bin(mask).count('1') == k:
-            min_dist = min(min_dist, min(dp[mask]))
-    
-    print(f"{min_dist:.2f}")
+    print(-1)
 
 if __name__ == "__main__":
     main()
-
-#Entrada:
-#3 2
-#1 1
-#2 2
-#3 3
-#Salida: 5.66
