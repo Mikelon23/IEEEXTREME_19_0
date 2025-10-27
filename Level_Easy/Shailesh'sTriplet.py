@@ -1,5 +1,4 @@
 import sys
-
 def main():
     data = sys.stdin.read().split()
     t = int(data[0])
@@ -11,7 +10,6 @@ def main():
         if N % 2 != 0:
             results.append("-1")
         else:
-            # Check if N is a power of two
             if N & (N - 1) == 0:
                 results.append("-1")
             else:
@@ -24,6 +22,5 @@ def main():
                 C = N - d
                 results.append(f"{A} {B} {C}")
     print("\n".join(results))
-
 if __name__ == "__main__":
     main()
