@@ -48,6 +48,12 @@ int main() {
             }
         }
         
+        if (found) {
+            cout << a << " " << b << " " << c << "\n";
+        } else {
+            cout << "-1\n";
+        }
+    }
     
     return 0;
 }
